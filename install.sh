@@ -25,4 +25,5 @@ sudo dnf install dnf-plugins-core -y
 # Install media codecs
 sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel -y
 sudo dnf install lame\* --exclude=lame-devel -y
+sudo dnf group upgrade --with-optional --allowerasing Multimedia -y
 sudo dnf group upgrade --with-optional Multimedia -y
