@@ -6,7 +6,7 @@ echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
 echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
 
 # Install gnome and utils
-sudo dnf install gnome-shell gnome-terminal nautilus gnome-software gnome-disk-utility xdg-user-dirs xdg-user-dirs-gtk nano neofetch gamemode mangohud flatpak -y
+sudo dnf install gnome-shell gnome-terminal nautilus gnome-software gnome-disk-utility xdg-user-dirs xdg-user-dirs-gtk nano neofetch gamemode mangohud flatpak timeshift -y
 sudo systemctl enable gdm
 sudo systemctl set-default graphical.target
 
