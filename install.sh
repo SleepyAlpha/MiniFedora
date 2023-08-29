@@ -10,6 +10,11 @@ sudo systemctl enable gdm
 sudo systemctl set-default graphical.target
 
 
+# Add Kernel Boot Args To Grub
+sudo sed -i 's/quiet/quiet splash nowatchdog amdgpu.ppfeaturemask=0xffffffff/' /etc/default/grub
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
 # Install And Enable Yaru Icons
 sudo dnf install yaru-icon-theme
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-dark'
@@ -36,13 +41,29 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 flatpak update -y
 
 
-# Install Core Flatpaks
-flatpak install flathub com.microsoft.Edge org.libreoffice.LibreOffice org.gnome.Evince org.gnome.Evolution org.gtk.Gtk3theme.Adwaita-dark org.gnome.eog org.gnome.Totem org.gnome.TextEditor org.gnome.Calculator com.github.tchx84.Flatseal -y
+# Install Core Gnome Apps
+flatpak install flathub org.gnome.Evince org.gtk.Gtk3theme.Adwaita-dark org.gnome.eog org.gnome.Totem org.gnome.TextEditor org.gnome.Calculator com.github.tchx84.Flatseal -y
 
 
-# Install Optional Flatpaks
-flatpak install flathub com.valvesoftware.Steam com.heroicgameslauncher.hgl tv.kodi.Kodi com.protonvpn.www -y
+# Install Productivity Apps
+flatpak install flathub org.libreoffice.LibreOffice org.gnome.Evolution -y
 
 
-# Copy Gamemode Config
+# Install Microsoft Edge
+flatpak install flathub com.microsoft.Edge -y
+
+
+# Downgrade Microsoft Edge from 116 To 115 To Fix Vaapi Decoding 
+sudo flatpak update --commit=6768dcf8c036efff58446b12f187cfffd4b532ffd87fa171e7117b9859fd109c com.microsoft.Edge -y
+
+
+# Install Gaming Apps
+flatpak install flathub com.valvesoftware.Steam com.heroicgameslauncher.hgl com.discordapp.Discord com.obsproject.Studio -y
+
+
+# Install Optional Apps
+flatpak install flathub tv.kodi.Kodi com.protonvpn.www -y
+
+
+# Copy Feral Gamemode Config
 sudo cp gamemode.ini /etc/
