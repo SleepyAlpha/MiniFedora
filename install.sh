@@ -5,13 +5,22 @@ echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
 
 
 # Install Gnome and Base Utils
-sudo dnf install gnome-shell nautilus gnome-software gnome-console gnome-tweaks xdg-user-dirs xdg-user-dirs-gtk neofetch gamemode mangohud flatpak timeshift -y
+sudo dnf install gnome-shell nautilus gnome-software gnome-console gvfs-smb xdg-user-dirs xdg-user-dirs-gtk neofetch gamemode mangohud flatpak timeshift plymouth-theme-spinner -y
 sudo systemctl enable gdm
 sudo systemctl set-default graphical.target
 
 
-# Install Yaru Icons
+# Install And Enable Yaru Icons
 sudo dnf install yaru-icon-theme
+gsettings set org.gnome.desktop.interface icon-theme 'Yaru-dark'
+
+
+# Set Legacy Apps Theme To Adwaita-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
+
+# Set Plymouth Theme
+sudo plymouth-set-default-theme spinner -R
 
 
 # Install Wifi Firmware For Laptop
@@ -32,7 +41,7 @@ flatpak install flathub com.microsoft.Edge org.libreoffice.LibreOffice org.gnome
 
 
 # Install Optional Flatpaks
-flatpak install flathub com.valvesoftware.Steam com.heroicgameslauncher.hgl tv.kodi.Kodi -y
+flatpak install flathub com.valvesoftware.Steam com.heroicgameslauncher.hgl tv.kodi.Kodi com.protonvpn.www -y
 
 
 # Copy Gamemode Config
