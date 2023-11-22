@@ -11,7 +11,7 @@ sudo systemctl set-default graphical.target
 
 
 # Add Kernel Boot Args To Grub
-sudo sed -i 's/quiet/quiet splash nowatchdog amdgpu.ppfeaturemask=0xffffffff/' /etc/default/grub
+sudo sed -i 's/quiet/quiet splash nowatchdog/' /etc/default/grub
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 
@@ -33,7 +33,7 @@ sudo dnf install iwl7260-firmware -y
 
 
 # Install VM Utils
-sudo dnf group install virtualization -y
+#sudo dnf group install virtualization -y
 
 
 # Install FlatHub
@@ -42,7 +42,7 @@ flatpak update -y
 
 
 # Install Core Gnome Apps
-flatpak install flathub org.gnome.Evince org.gtk.Gtk3theme.Adwaita-dark org.gnome.eog org.gnome.Totem org.gnome.TextEditor org.gnome.Calculator com.github.tchx84.Flatseal -y
+flatpak install flathub org.gnome.Evince org.gtk.Gtk3theme.Adwaita-dark org.gnome.eog org.gnome.TextEditor org.gnome.Calculator com.github.tchx84.Flatseal -y
 
 
 # Install Productivity Apps
